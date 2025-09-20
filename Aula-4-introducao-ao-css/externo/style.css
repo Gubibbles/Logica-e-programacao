@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+MX+Guides&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-align: center;
+    background-color:blue;
+    color:aliceblue;
+}
+
+header {
+    margin: 0px;
+    background-color: aqua;
+}
+
+main {
+    font-size: 15px;
+    padding: 10px;
+    margin:11px;
+
+}
+a {
+    margin: 10;
+    color:blanchedalmond;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 0.5em;
+    text-decoration: none;
+}
+
+main > section > p {
+    font-family: "Playwrite MX Guides", cursive;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    color:blanchedalmond;
+    font-weight: lighter;
+    font-style: italic;
+    line-height: 2;
+    letter-spacing: 100px;
+    text-indent: 100px;
+    color: rgb(12, 132, 123);
+}

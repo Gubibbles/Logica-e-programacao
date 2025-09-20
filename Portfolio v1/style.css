@@ -1,0 +1,274 @@
+:root {
+    --cor-texto: #1a1c20;
+    --cor-link: #f457a3;
+    --cor-background: #f7eef3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--cor-background);
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    height: 80px;
+}
+
+nav .esquerda a {
+    color: var(--cor-texto);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+nav .direita a {
+    color: var(--cor-texto);
+    margin: 0 10px;
+}
+
+nav .direita a:last-child {
+    color: var(--cor-background);
+    background-color: var(--cor-link);
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+nav .direita a span {
+    margin-left: 5px;
+}
+
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    margin: 50px 0;
+    margin-bottom: 100px;
+    gap: 40px;
+}
+
+.hero-section .text {
+    flex: 5;
+}
+
+.hero-section .text h2 {
+    font-size: 45px;
+}
+
+.hero-section .text .links {
+    margin-top: 25px;
+}
+
+.hero-section .text .links a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid var(--cor-link);
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: .1s;
+}
+
+.hero-section .text .links a:hover {
+    color: var(--cor-texto);
+    border: 2px solid var(--cor-texto);
+}
+
+.hero-section .headshot {
+    flex: 2;
+    display: flex;
+    justify-content: right;
+}
+
+.hero-section .headshot img {
+    width: 350px;
+    border-radius: 50%;
+}
+
+.section-certificados {
+    padding: 0 50px;
+    margin-bottom: 100px;
+}
+
+.section-certificados h2 {
+    text-align: center;
+    font-size: 35px;
+}
+
+.section-certificados .text {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-certificados .cells {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.section-certificados .cells .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 200px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 1.5px solid #ffa1ce60;
+    border-radius: 5px;
+}
+
+.section-certificados .cells .cell img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 2px;
+}
+
+.section-certificados .cells .cell span {
+    font-size: 18px;
+}
+
+.section-curriculo {
+    padding: 0 50px;
+    margin-bottom: 100px;
+}
+
+.section-curriculo h2 {
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+.section-curriculo .group {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.section-curriculo .group .detalhes-pessoais {
+    text-align: center;
+    flex: 2;
+}
+
+.section-curriculo .group .detalhes-pessoais img {
+    width: 200px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.section-curriculo .group .detalhes-pessoais p {
+    font-weight: 600;
+}
+
+.section-curriculo .group .detalhes-pessoais p:last-child {
+    font-weight: normal;
+}
+
+.section-curriculo .group .text {
+    flex: 8;
+}
+
+.section-projetos {
+    padding: 0 50px;
+    margin-bottom: 100px;
+}
+
+.section-projetos h2 {
+    font-size: 35px;
+    margin-bottom: 30px;
+}
+
+footer {
+    width: 100vw;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--cor-link);
+    color: var(--cor-texto);
+    position: fixed;
+    bottom: 0;
+}
+
+footer {
+    position: relative;
+    width: 100%;
+}
+
+@media (max-width: 850px) {
+    .hero-section .text h2 {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 740px) {
+    .hero-section {
+        flex-direction: column-reverse;
+    }
+
+    .hero-section .headshot img {
+        width: 300px;
+    }
+
+    .section-curriculo {
+        text-align: center;
+    }
+
+    .section-curriculo .group {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        padding: 0 20px;
+    }
+
+    nav .direita a {
+        font-size: 22px;
+    }
+
+    nav .direita a:last-child {
+        color: var(--cor-texto);
+        background-color: var(--cor-link);
+        padding: 0;
+    }
+
+    nav .direita a span {
+        display: none;
+    }
+    
+    .hero-section {
+        padding: 0 20px;
+    }
+
+    .hero-section .text h2 {
+        font-size: 30px;
+    }
+
+    .section-certificados {
+        padding: 0 20px;
+    }
+
+    .section-certificados .cells .cell span {
+        font-size: 16px;
+    }
+}

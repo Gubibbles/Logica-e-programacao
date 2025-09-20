@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        div {
+            padding: 50px;
+            border: 1px solid black;
+            font-size: 17px;
+            background-color: lightblue;
+        }
+
+        section {
+            padding: 25px;
+        }
+    </style>
+
+</head>
+<body>
+    <section>
+        <input type="text" id="nota1" placeholder="Digite a primeira nota:">
+        <input type="submit" onsubmit="mudaHtml()">
+    </section>
+    
+    <br>
+
+    <section>
+        <input type="text" id="nota2" placeholder="Digite a segunda nota:">
+        <input type="submit" onsubmit="mudaHtml()">
+    </section>
+
+    <br>
+
+    <section>
+        <input type="text" id="nota3" placeholder="Digite a terceira nota:">
+        <input type="submit" onsubmit="mudaHtml()">
+    </section>
+
+    <br>
+
+    <div onmouseover="entradaMouse()" id="mouse" onmouseout="saidaMouse()">
+        RESULTADO
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
