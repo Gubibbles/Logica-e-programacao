@@ -305,17 +305,78 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-
     <!-- ÁUDIO -->
-     <audio id="audio-player"></audio>
+    <audio id="audio-player"></audio>
 
-     <script src="script.js"></script>
 
     <!-- MODAL PARA IMAGENS -->
     <div id="image-modal" class="modal">
         <span class="close-modal">&times;</span>
         <img class="modal-content" id="modal-image">
     </div>
+
+    <!-- ELEMENTOS DE ÁUDIO -->
+    <audio id="click-sound" src="sons/click.wav" preload="auto"></audio>
+    <audio id="window-open-sound" src="sons/window-open.wav" preload="auto"></audio>
+    <audio id="recycle-sound" src="sons/recycle.wav" preload="auto"></audio>
+    <audio id="startup-sound" src="sons/startup.wav" preload="auto"></audio>
+
+    <!-- MENU INICIAR -->
+    <div id="start-menu" class="start-menu">
+        <div class="start-menu-header">
+            <img src="imagem/icon-windows-xp.png" alt="Windows XP">
+            <span>Menu Iniciar</span>
+        </div>
+    
+        <div class="start-menu-body">
+            <div class="start-menu-section">
+                <div class="credits-text">
+                    <h4>Créditos e Agradecimentos</h4>
+                
+                    <div class="credit-item">
+                        <img src="imagem/icon-docs.png" alt="Ícones">
+                        <span>
+                            <strong>Ícones por: Icons8</strong><br>
+                            <small>https://icons8.com</small>
+                        </span>
+                    </div>
+                
+                    <div class="credit-item">
+                        <img src="imagem/icon-spotify.png" alt="Sons">
+                        <span>
+                            <strong>Sons por: Mixkit</strong><br>
+                            <small>https://mixkit.co</small>
+                        </span>
+                    </div>
+                
+                    <div class="credit-item">
+                        <img src="imagem/icon-person.png" alt="Desenvolvimento">
+                        <span>
+                            <strong>Desenvolvido com amor 💜</strong><br>
+                            <small>Portfólio personalizado</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="start-menu-divider"></div>
+        
+            <div class="start-menu-section">
+                <div class="credits-text">
+                    <div class="credit-item">
+                        <img src="imagem/icon-windows-xp.png" alt="Informações">
+                        <span>
+                            <strong>Windows XP Theme</strong><br>
+                            <small>Interface inspirada no clássico!</small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-overlay" class="menu-overlay" onclick="fecharStartMenu()"></div>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -11,8 +11,108 @@ function updateClock() {
 
 setInterval(updateClock, 60000);
 
+// SISTEMA DE SOM
+let soundsEnabled = false;
+let soundsLoaded = false;
+const sounds = {};
+
+// CARREGAR SONS
+function loadSounds() {
+    if (soundsLoaded) return;
+    
+    const soundFiles = {
+        click: 'sons/click.wav',
+        windowOpen: 'sons/window-open.wav',
+        recycle: 'sons/recycle.wav',
+        startup: 'sons/startup.wav'
+    };
+
+    Object.entries(soundFiles).forEach(([name, src]) => {
+        sounds[name] = new Audio(src);
+        sounds[name].preload = 'auto';
+        sounds[name].volume = 0.4;
+    });
+    
+    soundsLoaded = true;
+    console.log('Sons carregados!');
+}
+
+// FUNÇÃO PARA TOCAR SONS
+function playSound(soundName, volume = 0.4) {
+    if (!soundsEnabled || !sounds[soundName]) return;
+    
+    try {
+        const sound = sounds[soundName].cloneNode();
+        sound.volume = volume;
+        sound.play().catch(error => {
+            console.log('Som não pode ser reproduzido:', error);
+        });
+    } catch (error) {
+        console.log('Erro ao reproduzir som:', error);
+    }
+}
+
+// ATIVAR SONS APÓS PRIMEIRA INTERAÇÃO
+function enableSounds() {
+    if (soundsEnabled) return;
+    
+    soundsEnabled = true;
+    console.log('Sons ativados!');
+    
+    playSound('click', 0.5);
+    
+    document.removeEventListener('click', enableSounds);
+    document.removeEventListener('mousedown', enableSounds);
+    document.removeEventListener('keydown', enableSounds);
+}
+
+// CONFIGURAR SISTEMA DE SOM
+function setupSoundSystem() {
+    loadSounds();
+    
+    document.addEventListener('click', enableSounds, { once: true });
+    document.addEventListener('mousedown', enableSounds, { once: true });
+    document.addEventListener('keydown', enableSounds, { once: true });
+}
+
+// CONFIGURAR SONS PARA ELEMENTOS INTERATIVOS
+function setupSounds() {
+    // Botões da taskbar
+    const taskbarButtons = document.querySelectorAll('.windows-button, .start-button');
+    taskbarButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => playSound('hover', 0.3));
+        button.addEventListener('click', () => playSound('click', 0.4));
+    });
+    
+    // Ícones da área de trabalho
+    const desktopIcons = document.querySelectorAll('.icone');
+    desktopIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', () => playSound('hover', 0.2));
+        icon.addEventListener('click', () => playSound('click', 0.3));
+    });
+    
+    // Botões de controle das janelas
+    const windowControls = document.querySelectorAll('.title-bar-controls button');
+    windowControls.forEach(button => {
+        button.addEventListener('mouseenter', () => playSound('hover', 0.3));
+        button.addEventListener('click', () => playSound('click', 0.4));
+    });
+    
+    // Botões personalizados
+    const xpButtons = document.querySelectorAll('.xp-button, .control-btn');
+    xpButtons.forEach(button => {
+        button.addEventListener('mouseenter', () => playSound('hover', 0.3));
+        button.addEventListener('click', () => playSound('click', 0.4));
+    });
+    
+    console.log('Sistema de som configurado!');
+}
+
 // ABRIR A JANELA
 function abrirJanela(idJanela) {
+    if (startMenuOpen){
+        fecharStartMenu();
+    }
     const janela = document.getElementById(idJanela);
     if (!janela) {
         console.error('Janela não encontrada:', idJanela);
@@ -31,6 +131,8 @@ function abrirJanela(idJanela) {
         janela.style.left = left + 'px';
         janela.style.top = top + 'px';
     }
+
+    playSound('windowOpen', 0.5);
 
     if (idJanela === 'sobre-mim-window') {
         document.getElementById('sobre-mim-button').classList.add('active');
@@ -185,8 +287,12 @@ function fecharModal() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => playSound('startup', 0.6), 500);
+    setupSoundSystem();
     updateClock();
     setupMinecraftIcon();
+    setupLixeiraIcon();
+    setupSounds();
 
     const sobreMimButton = document.getElementById('sobre-mim-button');
     const sobreMimIcon = document.getElementById('meus-documentos');
@@ -302,10 +408,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // CONFIGURAR BOTÃO "Iniciar"
     if (startButton) {
-        startButton.addEventListener('click', function() {
-            alert('Menu Iniciar clicado!');
+        startButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleStartMenu();
+            this.classList.toggle('menu-open');
         });
     }
+
+    document.addEventListener('click', function(e) {
+    if (startMenuOpen && !e.target.closest('#start-menu') && !e.target.closest('.start-button')) {
+        const startButton = document.querySelector('.start-button');
+        if (startButton) {
+            startButton.classList.remove('menu-open');
+        }
+    }
+});
 
     // CONFIGURAR ICONE "Sobre Mim" NA ÁREA DE TRABALHO
     if (sobreMimIcon) {
@@ -369,7 +486,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // MUSIC PLAYER
-
 // VARIÁVEIS GLOBAIS 
 let currentSongIndex = 0;
 let isPlaying = false;
@@ -539,7 +655,6 @@ function setupMinecraftIcon() {
     const minecraftIcon = document.getElementById('minecraft-icon');
     const minecraftButton = document.getElementById('minecraft-button');
     
-    // Configurar clique para ambos
     const minecraftClick = function(e) {
         e.stopPropagation();
         console.log('💎 Minecraft é realmente o melhor jogo do mundo!');
@@ -549,22 +664,71 @@ function setupMinecraftIcon() {
     if (minecraftButton) minecraftButton.addEventListener('click', minecraftClick);
 }
 
-// EFEITOS ESPECIAIS PARA MINECRAFT
-function createMinecraftEffect(x, y) {
-    const effect = document.createElement('div');
-    effect.className = 'minecraft-effect';
-    document.body.appendChild(effect);
+// FUNÇÃO PARA O ÍCONE DA LIXEIRA
+function setupLixeiraIcon() {
+    const lixeiraIcon = document.getElementById('lixeira-icon');
     
-    for (let i = 0; i < 20; i++) {
-        const pixel = document.createElement('div');
-        pixel.className = 'minecraft-pixel';
-        pixel.style.left = x + 'px';
-        pixel.style.top = y + 'px';
-        pixel.style.animationDelay = (i * 0.1) + 's';
-        effect.appendChild(pixel);
+    if (lixeiraIcon) {
+        lixeiraIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            playSound('recycle', 0.6);
+            console.log('🗑️ A lixeira está vazia...');
+        });
+    }
+}
+
+// VARIÁVEIS DO MENU INICIAR
+let startMenuOpen = false;
+
+// FUNÇÕES DO MENU INICIAR
+function toggleStartMenu() {
+    const startMenu = document.getElementById('start-menu');
+    const overlay = document.getElementById('menu-overlay');
+    
+    if (!startMenu || !overlay) {
+        console.error('Elementos do menu não encontrados!');
+        return;
     }
     
-    setTimeout(() => {
-        effect.remove();
-    }, 3000);
+    if (!startMenuOpen) {
+        // Abrir menu
+        startMenu.style.display = 'block';
+        overlay.style.display = 'block';
+        setTimeout(() => {
+            startMenu.classList.add('show');
+            overlay.classList.add('show');
+        }, 10);
+        startMenuOpen = true;
+        playSound('windowOpen', 0.5);
+    } else {
+        // Fechar menu
+        fecharStartMenu();
+    }
+}
+
+function fecharStartMenu() {
+    const startMenu = document.getElementById('start-menu');
+    const overlay = document.getElementById('menu-overlay');
+    
+    if (startMenu) {
+        startMenu.classList.remove('show');
+        overlay.classList.remove('show');
+        setTimeout(() => {
+            startMenu.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 300);
+    }
+    
+    startMenuOpen = false;
+}
+
+// FECHAR MENU AO CLICAR FORA DELE
+function setupMenuClickOutside() {
+    document.addEventListener('click', function(e) {
+        if (startMenuOpen && 
+            !e.target.closest('#start-menu') && 
+            !e.target.closest('.start-button')) {
+            fecharStartMenu();
+        }
+    });
 }

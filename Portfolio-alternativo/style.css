@@ -817,6 +817,150 @@ body.window-resizing {
     position: relative;
 }
 
+/* MENU INICIAR*/
+.start-menu {
+    position: fixed;
+    left: 2px;
+    bottom: 45px;
+    width: 300px;
+    background: linear-gradient(to bottom, var(--roxo-claro), var(--roxo-escuro));
+    border: 2px solid;
+    border-color: var(--rosa-claro) var(--borda-escura) var(--borda-escura) var(--rosa-claro);
+    box-shadow: 3px 3px 10px var(--sombra);
+    display: none;
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.start-menu.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.start-menu-header {
+    background: linear-gradient(to right, var(--roxo-escuro), var(--borda-escura));
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--texto-branco);
+    font-weight: bold;
+    font-size: 17px;
+    border-bottom: 1px solid var(--borda-escura);
+}
+
+.start-menu-header img {
+    width: 24px;
+    height: 24px;
+}
+
+.start-menu-body {
+    padding: 10px 0;
+    background: linear-gradient(to bottom, var(--roxo-claro), var(--azul-claro));
+}
+
+.start-menu-section {
+    padding: 10px 0;
+}
+
+.credits-text {
+    padding: 21px;
+}
+
+.credits-text h4 {
+    margin: 0 0 15px 0;
+    color: var(--texto-branco);
+    font-size: 17px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid var(--rosa-claro);
+    padding-bottom: 8px;
+}
+
+.credit-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.credit-item:hover {
+    background: linear-gradient(to bottom, var(--rosa-claro), var(--rosa-escuro));
+    transform: translateX(5px);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.credit-item img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.credit-item span {
+    font-size: 16px;
+    color: var(--texto-branco);
+    line-height: 1.4;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.credit-item strong {
+    color: var(--texto-branco);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.credit-item small {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+}
+
+.start-menu-divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--rosa-claro), transparent);
+    margin: 10px 15px;
+    border-radius: 1px;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: none;
+    z-index: 999;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+.credit-item a {
+    color: var(--texto-branco);
+    text-decoration: none;
+}
+
+.credit-item a:hover {
+    text-decoration: underline;
+}
+
+.start-button.menu-open {
+    background: linear-gradient(to bottom, var(--borda-escura), var(--roxo-escuro));
+    box-shadow: inset 1px 1px 0px var(--borda-escura), 
+                inset -1px -1px 0px var(--roxo-claro);
+}
+
 /* BARRA DE ROLAGEM DAS JANELAS */
 .window-body::-webkit-scrollbar {
     width: 18px;
@@ -877,5 +1021,19 @@ body.window-resizing {
     
     .gallery {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .start-menu {
+        width: 250px;
+        left: 2px;
+        bottom: 45px;
+    }
+
+    .start-menu-item {
+        padding: 10px 15px;
+    }
+    
+    .start-menu-item span {
+        font-size: 14px;
     }
 }
