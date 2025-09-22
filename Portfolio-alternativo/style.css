@@ -998,42 +998,432 @@ body.window-resizing {
 }
 
 /* RESPONSIVIDADE */
-
-@media (max-width: 800px) {
-    .window {
-        width: 90%;
-        height: 500px;
-        left: 5%;
+@media (max-width: 1024px) {
+     .window, .taskbar, .desktop {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
-.icons-grid {
-        grid-template-columns: repeat(2, 1fr);
+    
+    .icone:active, .windows-button:active {
+        transform: scale(0.95);
+        transition: transform 0.1s;
     }
-}
 
-@media (max-width: 600px) {
-    .window {
-        height: 450px;
+    .desktop {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .icone {
+        width: 60px;
+        margin: 8px;
+    }
+    
+    .icone img {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .icone span {
+        font-size: 10px;
+    }
+
+     .window {
+        width: 90% !important;
+        height: 70vh !important;
+        left: 5% !important;
+        min-width: 350px;
+    }
+
+    .taskbar {
+        height: 35px;
+    }
+    
+    .start-button, .windows-button {
+        height: 25px;
+        padding: 0 8px;
+        font-size: 11px;
+    }
+    
+    .windows-button {
+        min-width: 140px;
+    }
+    
+    .windows-button img {
+        width: 14px;
+        height: 14px;
+    }
+
+    .window-body {
+        padding: 15px;
+        font-size: 13px;
+    }
+    
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    .gallery img {
+        height: 120px;
     }
     
     .icons-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+    }
+    
+    .icon-link {
+        padding: 10px;
+    }
+    
+    .icon-link img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .start-menu {
+        width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        justify-items: center;
+        padding: 10px;
+    }
+
+    .icone {
+        width: 80px;
+        margin: 5px;
+    }
+    
+    .icone img {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .icone span {
+        font-size: 9px;
+        padding: 1px 3px;
+    }
+
+    .window {
+        width: 95% !important;
+        height: 80vh !important;
+        left: 2.5% !important;
+        top: 20px !important;
+        min-width: 300px;
+        min-height: 400px;
+    }
+
+    .taskbar {
+        height: 40px;
+        padding: 0 3px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+    
+    .quick-start {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 3px;
+    }
+    
+    .windows-button {
+        min-width: 120px;
+        font-size: 10px;
+        padding: 0 6px;
+        flex-shrink: 0;
+    }
+    
+    .start-button {
+        flex-shrink: 0;
+    }
+
+    .window-body {
+        padding: 10px;
+        font-size: 12px;
+    }
+    
+    .window-body h2 {
+        font-size: 16px;
+    }
+    
+    .window-body h3 {
+        font-size: 14px;
+    }
+    
+    .profile-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .links-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .xp-button {
+        width: 200px;
+        justify-content: center;
     }
     
     .gallery {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .gallery img {
+        height: 100px;
+    }
+    
+    .icons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .icon-link {
+        padding: 8px;
+    }
+    
+    .icon-link img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .icon-link span {
+        font-size: 11px;
+    }
+
+    .player-controls {
+        gap: 5px;
+    }
+    
+    .control-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
 
     .start-menu {
         width: 250px;
-        left: 2px;
-        bottom: 45px;
-    }
-
-    .start-menu-item {
-        padding: 10px 15px;
+        bottom: 40px;
     }
     
-    .start-menu-item span {
+    .credits-text {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .desktop {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .icone {
+        width: 70px;
+    }
+    
+    .icone img {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .icone span {
+        font-size: 8px;
+    }
+
+    .window {
+        width: 98% !important;
+        height: 85vh !important;
+        left: 1% !important;
+        top: 10px !important;
+        min-width: 280px;
+    }
+
+    .taskbar {
+        height: 35px;
+    }
+    
+    .start-button {
+        padding: 0 6px;
+        font-size: 10px;
+    }
+    
+    .start-button img {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .windows-button {
+        min-width: 100px;
+        font-size: 9px;
+        padding: 0 4px;
+    }
+    
+    .windows-button img {
+        width: 12px;
+        height: 12px;
+    }
+
+     .window-body {
+        padding: 8px;
+        font-size: 11px;
+    }
+    
+    .window-body h2 {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    
+    .window-body h3 {
+        font-size: 13px;
+    }
+    
+    .profile-photo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery img {
+        height: 120px;
+    }
+    
+    .icons-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .music-player {
+        padding: 5px;
+    }
+    
+    .player-header h2 {
         font-size: 14px;
     }
+    
+    .control-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .tooltip, .taskbar-tooltip {
+        display: none !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .desktop {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+    
+    .icone {
+        width: 60px;
+        flex-direction: row;
+        gap: 5px;
+        justify-content: center;
+    }
+    
+    .icone img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 0;
+    }
+    
+    .windows-button {
+        min-width: 80px;
+        font-size: 8px;
+    }
+    
+    .window-body {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .desktop {
+        gap: 25px;
+        padding: 30px;
+    }
+    
+    .icone {
+        width: 80px;
+    }
+    
+    .icone img {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .icone span {
+        font-size: 12px;
+    }
+    
+    .window {
+        max-width: 900px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .desktop {
+        height: calc(100vh - 30px);
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+    
+    .taskbar {
+        height: 30px;
+    }
+    
+    .window {
+        height: 90vh !important;
+        top: 5vh !important;
+    }
+}
+
+@media (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .icone, .windows-button, .control-btn, .xp-button, .icon-link {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+     .window-body {
+        line-height: 1.4;
+    }
+}
+
+.touch-device .icone {
+    min-height: 60px;
+}
+
+.touch-device .windows-button {
+    min-height: 44px;
+}
+
+.touch-device .window-resize-handle {
+    width: 24px;
+    height: 24px;
 }

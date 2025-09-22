@@ -118,6 +118,29 @@ function abrirJanela(idJanela) {
         console.error('Janela não encontrada:', idJanela);
         return;
     }
+
+    // Responsividade
+    if (window.innerWidth <= 768) {
+        janela.style.width = '95%';
+        janela.style.height = '80vh';
+        janela.style.left = '2.5%';
+        janela.style.top = '20px';
+    } else {
+        if (janela.style.left && janela.style.top) {
+            janela.style.display = 'flex';
+        } else {
+            const windowWidth = 700;
+            const windowHeight = 550;
+            const left = (window.innerWidth - windowWidth) / 2;
+            const top = 50;
+            
+            janela.style.left = left + 'px';
+            janela.style.top = top + 'px';
+        }
+    }
+
+    janela.style.display = 'flex';
+    playSound('windowOpen', 0.5); //
     
     if (janela.style.left && janela.style.top) {
         janela.style.display = 'flex';
@@ -730,5 +753,48 @@ function setupMenuClickOutside() {
             !e.target.closest('.start-button')) {
             fecharStartMenu();
         }
+    });
+}
+
+//RESPONSIVIDADE
+function ajustarJanelaParaMobile(janela) {
+    if (window.innerWidth <= 768) {
+        janela.style.width = '95%';
+        janela.style.height = '80vh';
+        janela.style.left = '2.5%';
+        janela.style.top = '20px';
+    }
+}
+
+window.addEventListener('resize', function() {
+    const janelasAbertas = document.querySelectorAll('.window[style*="display: flex"]');
+    janelasAbertas.forEach(janela => {
+        if (window.innerWidth <= 768) {
+            janela.style.width = '95%';
+            janela.style.height = '80vh';
+            janela.style.left = '2.5%';
+            janela.style.top = '20px';
+        } else {
+            if (!janela.style.left || janela.style.left === '2.5%') {
+                const windowWidth = 700;
+                const left = (window.innerWidth - windowWidth) / 2;
+                janela.style.left = left + 'px';
+                janela.style.top = '50px';
+            }
+        }
+    });
+});
+
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
+if (isTouchDevice()) {
+    document.body.classList.add('touch-device');
+    
+    // Ajustar delays para touch
+    const icons = document.querySelectorAll('.icone');
+    icons.forEach(icon => {
+        icon.style.cursor = 'pointer';
     });
 }
