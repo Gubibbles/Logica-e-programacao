@@ -792,7 +792,6 @@ function isTouchDevice() {
 if (isTouchDevice()) {
     document.body.classList.add('touch-device');
     
-    // Ajustar delays para touch
     const icons = document.querySelectorAll('.icone');
     icons.forEach(icon => {
         icon.style.cursor = 'pointer';
