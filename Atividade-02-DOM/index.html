@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 02 DOM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <header class="container">
+            <h1>Cadastro de alunos</h1>
+        </header>
+
+        <section class="cadastro">
+            <h2>Cadastrar aluno</h2>
+            <form id="formAluno">
+                <div class="input">
+                    <label for="nome">Nome do Aluno:</label>
+                    <input type="text" id="nome" required placeholder="Digite o nome do aluno">
+                </div>
+
+                <div class="input">
+                    <label for="nota">Nota (0-10):</label>
+                    <input type="number" id="nota" required placeholder="Digite a nota do aluno">
+                </div>
+
+                <button type="submit">Cadastrar aluno</button>
+            </form>
+        </section>
+
+        <section class="filtros">
+            <h2>Filtros</h2>
+            <div class="botoes-filtro">
+                <button id="botaoTodos" class="ativo">Mostrar todos</button>
+                <button id="botaoAprovados">Mostrar aprovados</button>
+                <button id="botaoReprovados">Mostrar reprovados</button>
+            </div>
+        </section>
+
+        <section  class="lista-alunos">
+            <h2>Lista de alunos</h2>
+            <div id="contador" class="contador">
+                Total: 0 | Aprovados: 0 | Reprovados: 0
+            </div>
+            
+            <div id="ListaAlunos" class="lista">
+                <!-- Aqui vai a lista de alunos que será inserida pelo JS -->
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
